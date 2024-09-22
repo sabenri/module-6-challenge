@@ -7,4 +7,36 @@
         <title>Weather Dashboard</title>
         <link rel="stylesheet" href="./assets/style.css">
     </head>
+    <body>
+        <main>
+            <header>
+                <h1>Weather Dashboard</h1>
+            </header>
+            <section class="Search-Section">
+                <h3>Search for a city</h3>
+                <div class="input-group">
+                    <input type="text" placeholder="Search City" id="city-input"/>
+                    <button type="button" id="Search-Button">Search</button>
+                </div>
+                <div class="card">
+                    <ul id="Stored-cities">
+
+                    </ul>
+
+                </div>
+            </section>
+            <section id="weather-Today">
+
+            </section>
+            <section class="forecast-cards">
+                <h3>5-day Forcast:</h3>
+                <div id="cards" class="forecast-cards">
+
+                </div>
+
+            </section>
+        </main>
+        <script src="./assets/script.js"></script>
+    </body>
+
 </html>
