@@ -69,4 +69,21 @@ function currentWeatherAPI(latitude, longitude){
                 cardDiv.append($("<h3>").text(cardDate), cardTemp, cardWind, cardHumid);
             }
         });
+
+        searchButton.on('click', function (event){
+            event.preventDefault();
+            getCitiesLonlat(cityInput.val());
+            $("#weather-today").empty();
+            $("#cards").empty();
+        });
+        
+        const data = new Data ();
+        for (var i =0; i < 5; i++) {
+            let day = data.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            let todayDate = '${month}/${day + i}/${year}';
+            console.log(todayDate);
+        }
+        displayPastCities();
 }
