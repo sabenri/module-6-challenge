@@ -1,4 +1,4 @@
-let apiKey ="";
+let apiKey ="1b279ba327e874fba9de13fa906e4a2b";
 let storedCities = $("#stored-cities");
 let cities = JSON.parse(localStorage.getItem("city")) || [];
 let outputCities = [];
