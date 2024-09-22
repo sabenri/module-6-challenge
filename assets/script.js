@@ -43,3 +43,16 @@ function getCitiesLonlat(cityName) {
             alert(error.message);
         });
 }
+function currentWeatherAPI(latitude, longitude){
+    const URL  ='https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial';
+    fetch (URL)
+    .then(response => response.json())
+    .then(data => {
+        $("#weather-today").empty();
+        let cityTitle = $("<h4>").text(data.name);
+        let cityTemp = $("<p>").text('${data.wind.speed} \u00b0f');
+        let cityWind = $("<p>").text('${data.wind.speed} MPH');
+        let cityHumid = $("<p>").text('${data.main.humidity}%');
+        $("#weather-today").append(cityTitle, cityTemp, cityWind, cityHumid);
+    });
+}
