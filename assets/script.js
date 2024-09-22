@@ -23,3 +23,23 @@ function displayPastCities () {
         });
     }
 }
+
+function getCitiesLonlat(cityName) {
+    const URLTest ='https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}';
+    fetch(URLTest)
+        .then(response => {
+            if(!response.ok) throw new Error('Sorry, No city was found');
+            return response.json();
+        })
+        .then (data => {
+            cities.push(data[0].name);
+            cities = removewithfilter(cities);
+            saveCities();
+            displayPastCities();
+            cityInput.val("");
+            currentWeatherAPI(data[0].lat, data[0].lon);
+        })
+        .catch(error => {
+            alert(error.message);
+        });
+}
