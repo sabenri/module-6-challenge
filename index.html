@@ -16,27 +16,27 @@
                 <h3>Search for a city</h3>
                 <div class="input-group">
                     <input type="text" placeholder="Search City" id="city-input"/>
-                    <button type="button" id="Search-Button">Search</button>
+                    <button id="Search-Button">Search</button>
                 </div>
-                <div class="card">
-                    <ul id="Stored-cities">
-
-                    </ul>
-
+                <div class="Search-History">
+                    <h3>Sreach History</h3>
+                    <ul id="history-list"></ul>
                 </div>
             </section>
-            <section id="weather-Today">
-
+            <section class="Current-Weather">
+                <h2 id="city-name">City Name</h2>
+                <p>Temp: <span id= "current-temp">--</span> °F</p>
+                <p>WInd: <span id="current-wind">--</span> MPH</p>
+                <p>Humidity: <span id="current-humidity">--</span> %</p>
             </section>
-            <section class="forecast-cards">
+            <section class="forecast">
                 <h3>5-day Forcast:</h3>
-                <div id="cards" class="forecast-cards">
+                <div id="forecast-cards">
 
                 </div>
-
             </section>
         </main>
-        <script src="./assets/script.js"></script>
+        
+        <script src="script.js"></script>
     </body>
-
 </html>

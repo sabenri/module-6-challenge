@@ -1,31 +1,34 @@
-let apiKey ="1b279ba327e874fba9de13fa906e4a2b";
+let apiKey = "1b279ba327e874fba9de13fa906e4a2b";
 let storedCities = $("#stored-cities");
 let cities = JSON.parse(localStorage.getItem("city")) || [];
-let outputCities = [];
 const searchButton = $("#search-button");
-let cityInput =$("city-input");
+let cityInput = $("#city-input");
 
 function removewithfilter(arr) {
     let outputCities = arr.filler((v, i, self) => i === self.indexOf(v));
     return outputCities;
 }
 
+function saveCities(){
+    localStorage.setItem("city", JSON.stringify(cities));
+}
+
 function displayPastCities () {
     const uniqueCities = removewithfilter(cities);
     $("#stored-cities").empty();
     for (var i = 0; i < Math.min(5, uniqueCities.length); i++) {
-        let pastcity = $("<button>").text(uniqueCities[i]);
-        pastcity.on('click', function (event) {
+        let pastCity = $("<button>").text(uniqueCities[i]);
+        pastCity.addClass("past-cities");
+        $("#stored-cities").append(pastCity);
+        pastCity.on('click', function(event) {
             event.preventDefault();
-            getCitiesLonlat(cityName);
-            $("#weather-today").empty();
-            $("#cards").empty();
+            getCitiesLonlat(uniqueCities[i]);
         });
     }
 }
 
 function getCitiesLonlat(cityName) {
-    const URLTest ='https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${apiKey}';
+    const URLTest ='api.openweathermap.org/data/2.5/weather?q=London&mode=xml';
     fetch(URLTest)
         .then(response => {
             if(!response.ok) throw new Error('Sorry, No city was found');
@@ -64,7 +67,7 @@ function currentWeatherAPI(latitude, longitude){
                 let cardDiv = $("<div>").addClass("card-box");
                 let cardDate = new Data(data.list[i * 8].dt_txt).toLocalDateString();
                 let cardTemp = $("<h6>").text('${data.list[i * 8].main.temp}/u00b0f');
-                let cardwind = $("<h6>").text('${data.list[i * 8].wind.speed} MPH');
+                let cardWind = $("<h6>").text('${data.list[i * 8].wind.speed} MPH');
                 let cardHumid = $("<h6>").text('${data.list[i * 8].main.humidity} %');
                 cardDiv.append($("<h3>").text(cardDate), cardTemp, cardWind, cardHumid);
             }
@@ -72,18 +75,15 @@ function currentWeatherAPI(latitude, longitude){
 
         searchButton.on('click', function (event){
             event.preventDefault();
-            getCitiesLonlat(cityInput.val());
-            $("#weather-today").empty();
+            let city =cityInput.val();
+            if(city){
+                $("#weather-today").empty();
             $("#cards").empty();
+            } else {
+                alert ("Please enter a city");
+            }
+            
         });
         
-        const data = new Data ();
-        for (var i =0; i < 5; i++) {
-            let day = data.getDate();
-            let month = date.getMonth() + 1;
-            let year = date.getFullYear();
-            let todayDate = '${month}/${day + i}/${year}';
-            console.log(todayDate);
-        }
         displayPastCities();
-}
+    }

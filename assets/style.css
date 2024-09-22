@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgb(49, 46, 70);
+}
+header {
+    background-color: rgb(244, 210, 159);
+    color: black;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+section{
+    margin-bottom: 20px;
+}
+
+h1, 
+h3{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.Search-Section {
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input-group button:hover {
+    background-color: rgb(244, 210, 159);
+}
+
+#stored-cities{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#stored-cities li {
+    margin-bottom: 10px;
+}
+
+
+
