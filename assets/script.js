@@ -55,4 +55,18 @@ function currentWeatherAPI(latitude, longitude){
         let cityHumid = $("<p>").text('${data.main.humidity}%');
         $("#weather-today").append(cityTitle, cityTemp, cityWind, cityHumid);
     });
+    const URL2 = 'https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial';
+    fetch(URL2)
+        .then(response => response.json())
+        .then(data => {
+            $("#cards").empty();
+            for (var i =0; i < 5; i++){
+                let cardDiv = $("<div>").addClass("card-box");
+                let cardDate = new Data(data.list[i * 8].dt_txt).toLocalDateString();
+                let cardTemp = $("<h6>").text('${data.list[i * 8].main.temp}/u00b0f');
+                let cardwind = $("<h6>").text('${data.list[i * 8].wind.speed} MPH');
+                let cardHumid = $("<h6>").text('${data.list[i * 8].main.humidity} %');
+                cardDiv.append($("<h3>").text(cardDate), cardTemp, cardWind, cardHumid);
+            }
+        });
 }
